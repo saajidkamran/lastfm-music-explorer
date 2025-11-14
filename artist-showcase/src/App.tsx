@@ -8,6 +8,10 @@ import { Navbar } from './components/common/Navbar';
 import { Footer } from './components/common/Footer';
 import { Box, Container } from '@chakra-ui/react';
 
+// Lazy load components that are not needed for the initial render
+const AlbumDetailView = lazy(() => import('./components/album/AlbumDetailView'));
+
+const SearchResults = lazy(() => import('./components/search/SearchResults'));
 
 const App: React.FC = () => {
   const { 
@@ -19,14 +23,16 @@ const App: React.FC = () => {
   } = useMusicStore();
 
   const renderContent = () => {
-
+    if (selectedAlbum) return <AlbumDetailView />;
+    if (selectedArtist) return <ArtistDetailView />;
+    if (currentView === 'favourites') return <FavouritesView />;
     
     // Default to search view
     return (
       <>
         <SearchBar />
         {error && !loading && <Box mt={8}><ErrorMessage message={error} /></Box>}
-
+        <SearchResults />
       </>
     );
   };
