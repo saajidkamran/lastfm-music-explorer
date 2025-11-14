@@ -10,6 +10,12 @@ A modern, responsive web application for exploring music using the Last.fm API. 
   - Track listings with play counts
   - Interactive play count charts
   - Album tags and descriptions
+  - Click on artist name to view their top albums
+- **Artist Details**: Explore an artist's discography with:
+  - Top albums displayed in a responsive grid
+  - Sort albums by release year (newest/oldest) or name (A-Z, Z-A)
+  - Click on any album to view its detailed information
+  - Navigate seamlessly between albums and artists
 - **Favorites**: Save your favorite albums and tracks with persistent storage
   - Tabbed interface to view favorite tracks and albums separately
   - Filter favorites by name, artist, or album
@@ -17,10 +23,10 @@ A modern, responsive web application for exploring music using the Last.fm API. 
   - Track list view with duration display
   - Album grid view with artwork
   - Click on items to view album details
-- **Advanced Sorting**: Sort search results and tracks by various criteria:
+- **Advanced Sorting**: Sort search results, tracks, and artist albums by various criteria:
   - Name (A-Z, Z-A)
   - Artist (A-Z, Z-A)
-  - Year (newest/oldest for albums)
+  - Year (newest/oldest for albums and artist albums)
   - Popularity (most/least popular for tracks)
   - Track number and duration
 - **Modern UI**: Built with Chakra UI v3 featuring:
@@ -69,6 +75,7 @@ VITE_DEFAULT_ART_IMAGE=https://picsum.photos/300/300
 ```
 
 **Getting a Last.fm API Key:**
+
 1. Visit [Last.fm API Account](https://www.last.fm/api/account/create)
 2. Create an account or sign in
 3. Create a new API application
@@ -90,12 +97,6 @@ npm run build
 
 The production build will be in the `dist` directory.
 
-### 6. Preview production build
-
-```bash
-npm run preview
-```
-
 ## Available Scripts
 
 - `npm run dev` - Start development server
@@ -115,6 +116,10 @@ src/
 │   │   ├── AlbumDetailView.tsx
 │   │   ├── AlbumPlayCountChart.tsx
 │   │   └── TrackList.tsx
+│   ├── artist/         # Artist-related components
+│   │   ├── ArtistDetailView.tsx
+│   │   └── __tests__/
+│   │       └── ArtistDetailView.test.tsx
 │   ├── common/         # Reusable components
 │   │   ├── Card.tsx
 │   │   ├── ErrorBoundary.tsx
@@ -134,7 +139,8 @@ src/
 ├── store/              # State management
 │   └── store.ts
 ├── utils/              # Utilities and types
-│   └── types.ts
+│   ├── types.ts
+│   └── styles.ts
 ├── App.tsx             # Main app component
 └── main.tsx            # Entry point
 ```
@@ -157,6 +163,16 @@ src/
    - Track listing with sortable options
    - Play count visualization chart
    - Tags and album description
+3. Click on the artist name to view their top albums
+
+### Viewing Artist Details
+
+1. Click on an artist name from an album detail page
+2. View the artist's top albums displayed in a responsive grid
+3. Use the sort dropdown to organize albums by:
+   - Release year (newest first or oldest first)
+   - Album name (A-Z or Z-A)
+4. Click on any album card to view its detailed information
 
 ### Managing Favorites
 
@@ -176,6 +192,7 @@ src/
 
 - **Search Results**: Use the sort dropdown to organize results by name, artist, year, or popularity
 - **Track List**: Sort tracks by number, name, duration, or play count
+- **Artist Albums**: Sort an artist's albums by release year (newest/oldest) or name (A-Z, Z-A)
 - **Favorites**: Sort your saved items by date added, name, artist, or album (tracks only)
 
 ## State Management
@@ -189,14 +206,6 @@ Tests are written using Vitest and React Testing Library. Run tests with:
 ```bash
 npm test
 ```
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
 
 ## License
 

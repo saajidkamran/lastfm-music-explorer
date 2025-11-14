@@ -2,7 +2,6 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { searchAlbums, searchTracks, getAlbumInfo, getArtistTopAlbums } from '../lastfmService';
 
 // Import environment variables directly (supports both process.env and Vite's import.meta.env)
-const API_BASE_URL = process.env.API_BASE_URL || import.meta.env.VITE_API_BASE_URL || '';
 const API_KEY = process.env.API_KEY || import.meta.env.VITE_API_KEY || '';
 
 // Mock fetch globally
