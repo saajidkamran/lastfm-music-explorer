@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "vitest.explorer"
+  ],
+  "unwantedRecommendations": [
+    "orta.vscode-jest",
+    "firsttris.vscode-jest-runner"
+  ]
+}
+
