@@ -30,7 +30,7 @@ export const FavouriteButton: React.FC<FavouriteButtonProps> = ({ track }) => {
       color={isFav ? 'pink.500' : 'gray.500'}
       _hover={{
         color: 'pink.500',
-        bg: 'rgba(236, 72, 153, 0.1)'
+        bg: 'rgba(236, 72, 153, 0.1)',
       }}
       aria-label={isFav ? 'Remove from favourites' : 'Add to favourites'}
       title={isFav ? 'Remove from favourites' : 'Add to favourites'}

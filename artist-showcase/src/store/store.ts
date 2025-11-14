@@ -191,12 +191,11 @@ export const useMusicStore = create<MusicState>()(
       }),
       migrate: (persistedState: any, version: number) => {
         if (version < 1) {
-          // If the stored state is from a version before 1, add the `dateAdded` property.
           const now = Date.now();
           if (persistedState.favourites) {
             persistedState.favourites = (persistedState.favourites as any[]).map((fav, index) => ({
               ...fav,
-              dateAdded: fav.dateAdded || now - index * 1000, // Stagger timestamps slightly
+              dateAdded: fav.dateAdded || now - index * 1000,
             }));
           }
           if (persistedState.favouriteAlbums) {

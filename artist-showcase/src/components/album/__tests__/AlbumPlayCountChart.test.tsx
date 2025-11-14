@@ -105,8 +105,10 @@ describe('AlbumPlayCountChart', () => {
     renderWithProvider(<AlbumPlayCountChart tracks={manyTracks} />);
     // Should only show 15 tracks
     const trackNumbers = screen.getAllByText(/\d+/);
-    const rankNumbers = trackNumbers.filter(el => 
-      ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15'].includes(el.textContent || '')
+    const rankNumbers = trackNumbers.filter((el) =>
+      ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15'].includes(
+        el.textContent || ''
+      )
     );
     expect(rankNumbers.length).toBeLessThanOrEqual(15);
   });
@@ -116,6 +118,3 @@ describe('AlbumPlayCountChart', () => {
     expect(screen.getByText(/chart displays relative track popularity/i)).toBeInTheDocument();
   });
 });
-
-
-

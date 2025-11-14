@@ -84,9 +84,7 @@ const SearchResults: React.FC = () => {
   return (
     <Box>
       <Flex {...searchResultsStyles.header}>
-        <Text {...searchResultsStyles.title}>
-          Search Results
-        </Text>
+        <Text {...searchResultsStyles.title}>Search Results</Text>
         {hasResults && (
           <Box>
             <VisuallyHidden>

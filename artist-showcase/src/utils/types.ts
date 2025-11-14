@@ -79,10 +79,33 @@ export interface FavouriteAlbum extends AlbumIdentifier {
   dateAdded: number;
 }
 
-
 export type SearchType = 'album' | 'track';
 export type AppView = 'search' | 'favourites';
 export type ArtistSortOption = 'release_desc' | 'release_asc' | 'name_asc' | 'name_desc';
-export type FavouritesSortOption = 'date_desc' | 'date_asc' | 'name_asc' | 'name_desc' | 'artist_asc' | 'artist_desc' | 'album_asc' | 'album_desc';
-export type TrackSortOption = 'rank_asc' | 'name_asc' | 'name_desc' | 'duration_asc' | 'duration_desc' | 'playcount_asc' | 'playcount_desc';
-export type SearchResultsSortOption = 'relevance' | 'name_asc' | 'name_desc' | 'artist_asc' | 'artist_desc' | 'listeners_asc' | 'listeners_desc' | 'year_desc' | 'year_asc';
+export type FavouritesSortOption =
+  | 'date_desc'
+  | 'date_asc'
+  | 'name_asc'
+  | 'name_desc'
+  | 'artist_asc'
+  | 'artist_desc'
+  | 'album_asc'
+  | 'album_desc';
+export type TrackSortOption =
+  | 'rank_asc'
+  | 'name_asc'
+  | 'name_desc'
+  | 'duration_asc'
+  | 'duration_desc'
+  | 'playcount_asc'
+  | 'playcount_desc';
+export type SearchResultsSortOption =
+  | 'relevance'
+  | 'name_asc'
+  | 'name_desc'
+  | 'artist_asc'
+  | 'artist_desc'
+  | 'listeners_asc'
+  | 'listeners_desc'
+  | 'year_desc'
+  | 'year_asc';

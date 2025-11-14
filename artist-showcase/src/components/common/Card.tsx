@@ -29,11 +29,7 @@ export const Card: React.FC<CardProps> = React.memo(
     };
 
     return (
-      <Box
-        onClick={onClick}
-        {...cardStyles.container}
-        _hover={cardStyles.hover}
-      >
+      <Box onClick={onClick} {...cardStyles.container} _hover={cardStyles.hover}>
         <Box position="relative" aspectRatio={1}>
           <ChakraImage
             src={imageUrl}
@@ -47,10 +43,7 @@ export const Card: React.FC<CardProps> = React.memo(
             loading="lazy"
             onError={(e) => (e.currentTarget.src = import.meta.env.VITE_DEFAULT_ART_IMAGE || '')}
           />
-          <Box
-            {...cardStyles.imageOverlay}
-            _groupHover={cardStyles.imageOverlayHover}
-          />
+          <Box {...cardStyles.imageOverlay} _groupHover={cardStyles.imageOverlayHover} />
         </Box>
         <Box p={4}>
           <Text
