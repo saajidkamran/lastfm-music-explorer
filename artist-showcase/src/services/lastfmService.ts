@@ -1,8 +1,8 @@
 import type { AlbumDetail, AlbumSearchResult, TrackSearchResult } from '../utils/types';
 
 const fetchLastFm = async <T,>(params: Record<string, string>): Promise<T> => {
-  const apiKey = process.env.API_KEY || import.meta.env.VITE_API_KEY || '';
-  const apiBaseUrl = process.env.API_BASE_URL || import.meta.env.VITE_API_BASE_URL || '';
+  const apiKey = import.meta.env.VITE_API_KEY || '';
+  const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || '';
   
   const urlParams = new URLSearchParams({
     api_key: apiKey,
