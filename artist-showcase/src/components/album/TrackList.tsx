@@ -1,12 +1,22 @@
 import React from 'react';
 import type { Track } from '../../utils/types';
+import { FavouriteButton } from '../common/FavouriteButton';
 import { Box, Flex, Stack, Text, Link } from '@chakra-ui/react';
 
 interface TrackListProps {
   tracks: Track[];
+  albumName: string;
 }
 
-export const TrackList: React.FC<TrackListProps> = ({ tracks }) => {
+const formatDuration = (secondsStr: string): string => {
+  const seconds = parseInt(secondsStr, 10);
+  if (isNaN(seconds) || seconds === 0) return '-';
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
+  return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+};
+
+export const TrackList: React.FC<TrackListProps> = ({ tracks, albumName }) => {
   if (!tracks || tracks.length === 0) {
     return <Text color="gray.500">No track information available.</Text>;
   }
@@ -53,6 +63,19 @@ export const TrackList: React.FC<TrackListProps> = ({ tracks }) => {
                   >
                     {track.name}
                   </Link>
+                </Flex>
+                <Flex align="center" flexShrink={0}>
+                  <Text color="gray.400" fontSize="sm" fontFamily="mono" mr={4}>
+                    {formatDuration(track.duration)}
+                  </Text>
+                  <FavouriteButton track={{
+                    id: `${track.artist}-${albumName}-${track.name}`,
+                    name: track.name,
+                    artist: track.artist,
+                    albumName: albumName,
+                    duration: track.duration,
+                    url: track.url,
+                  }} />
                 </Flex>
               </Flex>
             </Box>

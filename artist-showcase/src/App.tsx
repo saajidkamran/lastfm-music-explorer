@@ -24,8 +24,7 @@ const App: React.FC = () => {
 
   const renderContent = () => {
     if (selectedAlbum) return <AlbumDetailView />;
-    if (selectedArtist) return <ArtistDetailView />;
-    if (currentView === 'favourites') return <FavouritesView />;
+
     
     // Default to search view
     return (
