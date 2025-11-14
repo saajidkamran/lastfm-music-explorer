@@ -10,27 +10,25 @@ import { Box, Container } from '@chakra-ui/react';
 
 // Lazy load components that are not needed for the initial render
 const AlbumDetailView = lazy(() => import('./components/album/AlbumDetailView'));
-
+const FavouritesView = lazy(() => import('./components/favourites/FavouritesView'));
 const SearchResults = lazy(() => import('./components/search/SearchResults'));
 
 const App: React.FC = () => {
-  const { 
-    selectedAlbum, 
-    error, 
-    loading, 
-    currentView, 
-    selectedArtist,
-  } = useMusicStore();
+  const { selectedAlbum, error, loading, currentView, selectedArtist } = useMusicStore();
 
   const renderContent = () => {
     if (selectedAlbum) return <AlbumDetailView />;
+    if (currentView === 'favourites') return <FavouritesView />;
 
-    
     // Default to search view
     return (
       <>
         <SearchBar />
-        {error && !loading && <Box mt={8}><ErrorMessage message={error} /></Box>}
+        {error && !loading && (
+          <Box mt={8}>
+            <ErrorMessage message={error} />
+          </Box>
+        )}
         <SearchResults />
       </>
     );
@@ -43,13 +41,11 @@ const App: React.FC = () => {
       <Box as="main">
         <Container maxW="container.xl" p={{ base: 4, md: 8 }}>
           <ErrorBoundary>
-            <Suspense fallback={<Spinner />}>
-              {renderContent()}
-            </Suspense>
+            <Suspense fallback={<Spinner />}>{renderContent()}</Suspense>
           </ErrorBoundary>
         </Container>
       </Box>
-      
+
       <Footer />
     </Box>
   );

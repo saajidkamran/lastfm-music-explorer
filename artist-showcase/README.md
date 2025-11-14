@@ -11,6 +11,12 @@ A modern, responsive web application for exploring music using the Last.fm API. 
   - Interactive play count charts
   - Album tags and descriptions
 - **Favorites**: Save your favorite albums and tracks with persistent storage
+  - Tabbed interface to view favorite tracks and albums separately
+  - Filter favorites by name, artist, or album
+  - Advanced sorting options (date added, name, artist, album)
+  - Track list view with duration display
+  - Album grid view with artwork
+  - Click on items to view album details
 - **Advanced Sorting**: Sort search results and tracks by various criteria:
   - Name (A-Z, Z-A)
   - Artist (A-Z, Z-A)
@@ -84,6 +90,11 @@ npm run build
 
 The production build will be in the `dist` directory.
 
+### 6. Preview production build
+
+```bash
+npm run preview
+```
 
 ## Available Scripts
 
@@ -113,6 +124,8 @@ src/
 │   │   ├── Footer.tsx
 │   │   ├── Navbar.tsx
 │   │   └── Spinner.tsx
+│   ├── favourites/     # Favorites view components
+│   │   └── FavouritesView.tsx
 │   └── search/         # Search-related components
 │       ├── SearchBar.tsx
 │       └── SearchResults.tsx
@@ -150,12 +163,20 @@ src/
 - **Add to Favorites**: Click the heart icon on albums or tracks
 - **View Favorites**: Navigate to the "Favourites" tab in the navbar
 - **Remove from Favorites**: Click the heart icon again to unfavorite
+- **Filter Favorites**: Use the search input to filter favorites by name, artist, or album name
+- **Switch Views**: Toggle between "Tracks" and "Albums" tabs to view different favorite types
+- **Sort Favorites**: Use the sort dropdown to organize favorites by:
+  - Date added (newest/oldest)
+  - Name (A-Z, Z-A)
+  - Artist (A-Z, Z-A)
+  - Album (A-Z, Z-A) - available for tracks only
+- **Navigate to Details**: Click on any favorite track or album to view its album details page
 
 ### Sorting
 
 - **Search Results**: Use the sort dropdown to organize results by name, artist, year, or popularity
 - **Track List**: Sort tracks by number, name, duration, or play count
-- **Favorites**: Sort your saved items by various criteria
+- **Favorites**: Sort your saved items by date added, name, artist, or album (tracks only)
 
 ## State Management
 
