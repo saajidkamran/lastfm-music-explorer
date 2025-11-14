@@ -15,7 +15,7 @@ const findImageUrl = (images: Image[]): string => {
   if (largeImage) return largeImage['#text'];
   const mediumImage = images.find((img) => img.size === 'medium' && img['#text']);
   if (mediumImage) return mediumImage['#text'];
-  return process.env.DEFAULT_ART_IMAGE || '';
+  return import.meta.env.VITE_DEFAULT_ART_IMAGE || '';
 };
 
 export const Card: React.FC<CardProps> = React.memo(
@@ -55,7 +55,7 @@ export const Card: React.FC<CardProps> = React.memo(
             transitionDuration="300ms"
             _groupHover={{ transform: 'scale(1.05)' }}
             loading="lazy"
-            onError={(e) => (e.currentTarget.src = process.env.DEFAULT_ART_IMAGE || '')}
+            onError={(e) => (e.currentTarget.src = import.meta.env.VITE_DEFAULT_ART_IMAGE || '')}
           />
           <Box
             position="absolute"
