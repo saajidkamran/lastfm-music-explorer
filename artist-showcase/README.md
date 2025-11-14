@@ -1,73 +1,188 @@
-# React + TypeScript + Vite
+# Music Explorer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive web application for exploring music using the Last.fm API. Search for albums and tracks, view detailed information, and save your favorites.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Search Music**: Search for albums and tracks from the Last.fm database
+- **Album Details**: View comprehensive album information including:
+  - Album artwork, artist, and metadata
+  - Track listings with play counts
+  - Interactive play count charts
+  - Album tags and descriptions
+- **Favorites**: Save your favorite albums and tracks with persistent storage
+- **Advanced Sorting**: Sort search results and tracks by various criteria:
+  - Name (A-Z, Z-A)
+  - Artist (A-Z, Z-A)
+  - Year (newest/oldest for albums)
+  - Popularity (most/least popular for tracks)
+  - Track number and duration
+- **Modern UI**: Built with Chakra UI v3 featuring:
+  - Dark theme with pink accents
+  - Responsive design for mobile and desktop
+  - Smooth animations and transitions
+  - Accessible components
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React 19** - UI library
+- **TypeScript** - Type safety
+- **Vite** - Build tool and dev server
+- **Chakra UI v3** - Component library
+- **Zustand** - State management with persistence
+- **Vitest** - Testing framework
+- **React Testing Library** - Component testing
 
-## Expanding the ESLint configuration
+## Prerequisites
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Node.js 18+ and npm
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Getting Started
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### 1. Clone the repository
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+git clone <repository-url>
+cd artist-showcase
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Install dependencies
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
+
+### 3. Set up environment variables
+
+Create a `.env` file in the root directory:
+
+```env
+VITE_API_KEY=your_lastfm_api_key
+VITE_API_BASE_URL=https://ws.audioscrobbler.com/2.0/
+VITE_DEFAULT_ART_IMAGE=https://picsum.photos/300/300
+```
+
+**Getting a Last.fm API Key:**
+1. Visit [Last.fm API Account](https://www.last.fm/api/account/create)
+2. Create an account or sign in
+3. Create a new API application
+4. Copy your API key and add it to `.env`
+
+### 4. Run the development server
+
+```bash
+npm run dev
+```
+
+The application will be available at `http://localhost:3000`
+
+### 5. Build for production
+
+```bash
+npm run build
+```
+
+The production build will be in the `dist` directory.
+
+
+## Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+- `npm test` - Run tests in watch mode
+- `npm run test:run` - Run tests once
+- `npm run test:ui` - Run tests with UI
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── album/          # Album-related components
+│   │   ├── AlbumDetailView.tsx
+│   │   ├── AlbumPlayCountChart.tsx
+│   │   └── TrackList.tsx
+│   ├── common/         # Reusable components
+│   │   ├── Card.tsx
+│   │   ├── ErrorBoundary.tsx
+│   │   ├── ErrorMessage.tsx
+│   │   ├── FavouriteAlbumButton.tsx
+│   │   ├── FavouriteButton.tsx
+│   │   ├── Footer.tsx
+│   │   ├── Navbar.tsx
+│   │   └── Spinner.tsx
+│   └── search/         # Search-related components
+│       ├── SearchBar.tsx
+│       └── SearchResults.tsx
+├── services/           # API services
+│   └── lastfmService.ts
+├── store/              # State management
+│   └── store.ts
+├── utils/              # Utilities and types
+│   └── types.ts
+├── App.tsx             # Main app component
+└── main.tsx            # Entry point
+```
+
+## Usage
+
+### Searching
+
+1. Enter a search term in the search bar (default: "Daft Punk")
+2. Select whether to search for "Albums" or "Tracks"
+3. Click the Search button or press Enter
+4. Results will be displayed in a responsive grid
+
+### Viewing Album Details
+
+1. Click on any album from the search results
+2. View album information including:
+   - High-resolution album artwork
+   - Listener and play count statistics
+   - Track listing with sortable options
+   - Play count visualization chart
+   - Tags and album description
+
+### Managing Favorites
+
+- **Add to Favorites**: Click the heart icon on albums or tracks
+- **View Favorites**: Navigate to the "Favourites" tab in the navbar
+- **Remove from Favorites**: Click the heart icon again to unfavorite
+
+### Sorting
+
+- **Search Results**: Use the sort dropdown to organize results by name, artist, year, or popularity
+- **Track List**: Sort tracks by number, name, duration, or play count
+- **Favorites**: Sort your saved items by various criteria
+
+## State Management
+
+The application uses Zustand for state management with localStorage persistence. Favorites are automatically saved and restored between sessions.
+
+## Testing
+
+Tests are written using Vitest and React Testing Library. Run tests with:
+
+```bash
+npm test
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is private and proprietary.
+
+## Acknowledgments
+
+- [Last.fm API](https://www.last.fm/api) for providing music data
+- [Chakra UI](https://chakra-ui.com/) for the component library
+- [Vite](https://vitejs.dev/) for the excellent development experience
