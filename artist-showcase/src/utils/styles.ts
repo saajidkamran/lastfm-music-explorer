@@ -230,4 +230,86 @@ export const svgIconStyles = {
     position: 'absolute' as const,
     transition: 'all 300ms',
   },
+  emptyStateIcon: {
+    width: '64px',
+    height: '64px',
+    margin: '0 auto',
+    color: '#4B5563',
+  },
+};
+
+export const favouritesViewStyles = {
+  title: {
+    fontSize: '3xl',
+    fontWeight: 'bold',
+    mb: 6,
+    color: 'gray.300',
+    borderBottom: '2px',
+    borderColor: 'gray.700',
+    pb: 2,
+  },
+  emptyState: {
+    textAlign: 'center',
+    py: 16,
+  },
+  emptyStateTitle: {
+    mt: 2,
+    fontSize: '2xl',
+    fontWeight: 'semibold',
+    color: 'white',
+  },
+  emptyStateText: {
+    mt: 1,
+    fontSize: 'md',
+    color: 'gray.400',
+  },
+  trackListContainer: {
+    overflow: 'hidden',
+    borderRadius: 'lg',
+    bg: 'rgba(31, 41, 55, 0.5)',
+    boxShadow: 'md',
+  },
+  trackListItem: {
+    p: 4,
+    transition: 'colors',
+    transitionDuration: '200ms',
+  },
+  trackListItemHover: {
+    bg: 'rgba(55, 65, 81, 0.5)',
+  },
+  trackName: {
+    color: 'white',
+    fontWeight: 'semibold',
+    cursor: 'pointer',
+  },
+  trackNameHover: {
+    color: 'pink.400',
+  },
+  trackInfo: {
+    color: 'gray.400',
+    fontSize: 'sm',
+  },
+  trackDuration: {
+    color: 'gray.400',
+    fontSize: 'sm',
+    fontFamily: 'mono',
+    mr: 4,
+    display: { base: 'none', sm: 'block' },
+  },
+  emptyMessage: {
+    textAlign: 'center',
+    color: 'gray.400',
+    mt: 8,
+  },
+  favouriteButtonContainer: {
+    position: 'absolute',
+    top: 2,
+    right: 2,
+    opacity: { base: 1, md: 0 },
+    transition: 'opacity',
+    transitionDuration: '300ms',
+  },
+  favouriteButtonContainerHover: {
+    opacity: 1,
+  },
 };
