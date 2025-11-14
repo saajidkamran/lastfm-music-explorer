@@ -14,7 +14,7 @@ const findImageUrl = (images: Image[]): string => {
   if (extraLargeImage) return extraLargeImage['#text'];
   const largeImage = images.find(img => img.size === 'large' && img['#text']);
   if (largeImage) return largeImage['#text'];
-  return process.env.DEFAULT_ART_IMAGE || '';
+  return import.meta.env.VITE_DEFAULT_ART_IMAGE || '';
 };
 
 const AlbumDetailView: React.FC = () => {
@@ -64,7 +64,7 @@ const AlbumDetailView: React.FC = () => {
           boxShadow="2xl"
           shadowColor="rgba(0, 0, 0, 0.3)"
           loading="lazy"
-          onError={(e) => (e.currentTarget.src = process.env.DEFAULT_ART_IMAGE || '')}
+          onError={(e) => (e.currentTarget.src = import.meta.env.VITE_DEFAULT_ART_IMAGE || '')}
         />
         <Flex mt={4} justify="space-around" textAlign="center" fontSize="sm" bg="rgba(31, 41, 55, 0.5)" p={3} borderRadius="lg">
             <Box>

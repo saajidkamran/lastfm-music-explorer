@@ -23,7 +23,7 @@ const AlbumPlayCountChart: React.FC<AlbumPlayCountChartProps> = ({ tracks }) => 
   return (
     <Box bg="rgba(31, 41, 55, 0.5)" p={4} borderRadius="lg">
       <Flex align="flex-end" h={64} gap={2}>
-        {chartData.map((track, index) => {
+        {chartData.map((track) => {
           const barHeight = (track.playcount! / maxPlaycount) * 100;
           return (
             <Box
@@ -49,7 +49,9 @@ const AlbumPlayCountChart: React.FC<AlbumPlayCountChartProps> = ({ tracks }) => 
                 fontSize="xs"
                 color="gray.400"
                 mt={1}
-                isTruncated
+                overflow="hidden"
+                textOverflow="ellipsis"
+                whiteSpace="nowrap"
                 _groupHover={{ color: 'white' }}
               >
                 {track['@attr'].rank}
