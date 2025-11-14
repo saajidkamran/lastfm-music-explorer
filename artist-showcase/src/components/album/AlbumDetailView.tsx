@@ -8,6 +8,7 @@ import type { Image, TrackSortOption } from '../../utils/types';
 import AlbumPlayCountChart from './AlbumPlayCountChart';
 import { FavouriteAlbumButton } from '../common/FavouriteAlbumButton';
 import { Box, Flex, Text, Image as ChakraImage, VisuallyHidden, Badge } from '@chakra-ui/react';
+import { selectStyles, albumDetailStyles } from '../../utils/styles';
 
 const findImageUrl = (images: Image[]): string => {
   const extraLargeImage = images.find(img => img.size === 'extralarge' && img['#text']);
@@ -66,7 +67,7 @@ const AlbumDetailView: React.FC = () => {
           loading="lazy"
           onError={(e) => (e.currentTarget.src = import.meta.env.VITE_DEFAULT_ART_IMAGE || '')}
         />
-        <Flex mt={4} justify="space-around" textAlign="center" fontSize="sm" bg="rgba(31, 41, 55, 0.5)" p={3} borderRadius="lg">
+        <Flex {...albumDetailStyles.statsContainer}>
             <Box>
                 <Text fontWeight="bold" fontSize="lg" color="pink.400">{Number(selectedAlbum.listeners).toLocaleString()}</Text>
                 <Text color="gray.400">Listeners</Text>
@@ -121,17 +122,8 @@ const AlbumDetailView: React.FC = () => {
         )}
 
         <Box mt={8}>
-            <Flex
-              flexDirection={{ base: 'column', sm: 'row' }}
-              justify={{ sm: 'space-between' }}
-              align={{ sm: 'center' }}
-              gap={2}
-              mb={4}
-              borderBottom="2px"
-              borderColor="gray.700"
-              pb={2}
-            >
-                <Text fontSize="2xl" fontWeight="bold" color="gray.300">Tracklist</Text>
+            <Flex {...albumDetailStyles.tracklistHeader}>
+                <Text {...albumDetailStyles.tracklistTitle}>Tracklist</Text>
                 <Box flexShrink={0}>
                     <VisuallyHidden>
                       <label htmlFor="track-sort-select">Sort tracks by</label>
@@ -140,23 +132,13 @@ const AlbumDetailView: React.FC = () => {
                         id="track-sort-select"
                         value={trackSortOption}
                         onChange={(e: ChangeEvent<HTMLSelectElement>) => setTrackSortOption(e.target.value as TrackSortOption)}
-                        style={{
-                          backgroundColor: '#374151',
-                          color: 'white',
-                          border: '2px solid transparent',
-                          borderRadius: '0.5rem',
-                          padding: '0.25rem 0.75rem',
-                          fontSize: '0.875rem',
-                          cursor: 'pointer',
-                          transition: 'all 300ms',
-                          outline: 'none',
-                        }}
+                        style={selectStyles.base}
                         onFocus={(e) => {
-                          e.target.style.borderColor = '#ec4899';
-                          e.target.style.boxShadow = 'none';
+                          e.target.style.borderColor = selectStyles.focus.borderColor;
+                          e.target.style.boxShadow = selectStyles.focus.boxShadow;
                         }}
                         onBlur={(e) => {
-                          e.target.style.borderColor = 'transparent';
+                          e.target.style.borderColor = selectStyles.blur.borderColor;
                         }}
                     >
                         <option value="rank_asc">Track Number</option>
