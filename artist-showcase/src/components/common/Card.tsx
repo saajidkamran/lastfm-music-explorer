@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Image } from '../../utils/types';
 import { Box, Text, Image as ChakraImage } from '@chakra-ui/react';
+import { cardStyles, textTruncateStyles } from '../../utils/styles';
 
 interface CardProps {
   title: string;
@@ -30,19 +31,8 @@ export const Card: React.FC<CardProps> = React.memo(
     return (
       <Box
         onClick={onClick}
-        bg="gray.800"
-        borderRadius="lg"
-        overflow="hidden"
-        boxShadow="lg"
-        transform="auto"
-        _hover={{
-          transform: 'translateY(-4px)',
-          boxShadow: '2xl',
-          shadowColor: 'rgba(236, 72, 153, 0.1)',
-        }}
-        transition="all"
-        transitionDuration="300ms"
-        cursor="pointer"
+        {...cardStyles.container}
+        _hover={cardStyles.hover}
       >
         <Box position="relative" aspectRatio={1}>
           <ChakraImage
@@ -58,39 +48,26 @@ export const Card: React.FC<CardProps> = React.memo(
             onError={(e) => (e.currentTarget.src = import.meta.env.VITE_DEFAULT_ART_IMAGE || '')}
           />
           <Box
-            position="absolute"
-            inset={0}
-            bg="rgba(0, 0, 0, 0.4)"
-            _groupHover={{ bg: 'rgba(0, 0, 0, 0.2)' }}
-            transition="all"
-            transitionDuration="300ms"
+            {...cardStyles.imageOverlay}
+            _groupHover={cardStyles.imageOverlayHover}
           />
         </Box>
         <Box p={4}>
           <Text
-            fontSize="sm"
-            fontWeight="bold"
-            overflow="hidden"
-            textOverflow="ellipsis"
-            whiteSpace="nowrap"
-            color="white"
-            _groupHover={{ color: 'pink.400' }}
-            transition="colors"
-            transitionDuration="200ms"
+            {...cardStyles.title}
+            {...textTruncateStyles}
+            _groupHover={cardStyles.titleHover}
             title={title}
           >
             {title}
           </Text>
           <Text
-            fontSize="xs"
-            color="gray.400"
-            overflow="hidden"
-            textOverflow="ellipsis"
-            whiteSpace="nowrap"
+            {...cardStyles.subtitle}
+            {...textTruncateStyles}
             title={subtitle}
             onClick={onSubtitleClick ? handleSubtitleClick : undefined}
             cursor={onSubtitleClick ? 'pointer' : 'default'}
-            _hover={onSubtitleClick ? { color: 'pink.400', textDecoration: 'underline' } : {}}
+            _hover={onSubtitleClick ? cardStyles.subtitleHover : {}}
           >
             {subtitle}
           </Text>

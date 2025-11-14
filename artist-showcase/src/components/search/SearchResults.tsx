@@ -6,6 +6,7 @@ import { Spinner } from '../common/Spinner';
 import { FavouriteAlbumButton } from '../common/FavouriteAlbumButton';
 import type { SearchResultsSortOption } from '../../utils/types';
 import { Box, Flex, Text, Grid, VisuallyHidden } from '@chakra-ui/react';
+import { selectStyles, searchResultsStyles } from '../../utils/styles';
 
 const SearchResults: React.FC = () => {
   const {
@@ -82,17 +83,8 @@ const SearchResults: React.FC = () => {
 
   return (
     <Box>
-      <Flex
-        flexDirection={{ base: 'column', sm: 'row' }}
-        justify={{ sm: 'space-between' }}
-        align={{ sm: 'center' }}
-        gap={4}
-        mb={6}
-        borderBottom="2px"
-        borderColor="gray.700"
-        pb={2}
-      >
-        <Text fontSize="2xl" fontWeight="bold" color="gray.300">
+      <Flex {...searchResultsStyles.header}>
+        <Text {...searchResultsStyles.title}>
           Search Results
         </Text>
         {hasResults && (
@@ -106,23 +98,13 @@ const SearchResults: React.FC = () => {
               onChange={(e: ChangeEvent<HTMLSelectElement>) =>
                 setSearchResultsSort(e.target.value as SearchResultsSortOption)
               }
-              style={{
-                backgroundColor: '#374151',
-                color: 'white',
-                border: '2px solid transparent',
-                borderRadius: '0.5rem',
-                padding: '0.25rem 0.75rem',
-                fontSize: '0.875rem',
-                cursor: 'pointer',
-                transition: 'all 300ms',
-                outline: 'none',
-              }}
+              style={selectStyles.base}
               onFocus={(e) => {
-                e.target.style.borderColor = '#ec4899';
-                e.target.style.boxShadow = 'none';
+                e.target.style.borderColor = selectStyles.focus.borderColor;
+                e.target.style.boxShadow = selectStyles.focus.boxShadow;
               }}
               onBlur={(e) => {
-                e.target.style.borderColor = 'transparent';
+                e.target.style.borderColor = selectStyles.blur.borderColor;
               }}
             >
               <option value="relevance">Sort by: Relevance</option>
