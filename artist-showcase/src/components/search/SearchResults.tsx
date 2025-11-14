@@ -3,6 +3,7 @@ import type { ChangeEvent } from 'react';
 import { useMusicStore } from '../../store/store';
 import { Card } from '../common/Card';
 import { Spinner } from '../common/Spinner';
+import { FavouriteAlbumButton } from '../common/FavouriteAlbumButton';
 import type { SearchResultsSortOption } from '../../utils/types';
 import { Box, Flex, Text, Grid, VisuallyHidden } from '@chakra-ui/react';
 
@@ -12,6 +13,7 @@ const SearchResults: React.FC = () => {
     trackResults,
     loading,
     searchType,
+    fetchAlbumDetails,
     fetchArtistDetails,
     searchResultsSort,
     setSearchResultsSort,
@@ -101,7 +103,9 @@ const SearchResults: React.FC = () => {
             <select
               id="search-sort-select"
               value={searchResultsSort}
-              onChange={(e: ChangeEvent<HTMLSelectElement>) => setSearchResultsSort(e.target.value as SearchResultsSortOption)}
+              onChange={(e: ChangeEvent<HTMLSelectElement>) =>
+                setSearchResultsSort(e.target.value as SearchResultsSortOption)
+              }
               style={{
                 backgroundColor: '#374151',
                 color: 'white',
@@ -156,14 +160,26 @@ const SearchResults: React.FC = () => {
           sortedAlbumResults.map((album, index) => (
             <Box
               key={album.mbid ? `${album.mbid}-${index}` : `${album.name}-${album.artist}-${index}`}
+              position="relative"
             >
               <Card
                 title={album.name}
-                subtitle={album.artist}
+                subtitle={album.year ? `${album.artist} • ${album.year}` : album.artist}
                 images={album.image}
-                onClick={() => window.open(album.url, '_blank', 'noopener,noreferrer')}
+                onClick={() => fetchAlbumDetails(album.artist, album.name)}
                 onSubtitleClick={() => fetchArtistDetails(album.artist)}
               />
+              <Box
+                position="absolute"
+                top={2}
+                right={2}
+                opacity={0}
+                _groupHover={{ opacity: 1 }}
+                transition="opacity"
+                transitionDuration="300ms"
+              >
+                <FavouriteAlbumButton album={album} />
+              </Box>
             </Box>
           ))}
         {searchType === 'track' &&
