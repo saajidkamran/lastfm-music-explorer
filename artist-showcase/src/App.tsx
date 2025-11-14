@@ -1,35 +1,53 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { Suspense, lazy } from 'react';
+import { useMusicStore } from './store/store';
+import SearchBar from './components/search/SearchBar';
+import { ErrorMessage } from './components/common/ErrorMessage';
+import { Spinner } from './components/common/Spinner';
+import ErrorBoundary from './components/common/ErrorBoundary';
+import { Navbar } from './components/common/Navbar';
+import { Footer } from './components/common/Footer';
+import { Box, Container } from '@chakra-ui/react';
 
-function App() {
-  const [count, setCount] = useState(0)
+
+const App: React.FC = () => {
+  const { 
+    selectedAlbum, 
+    error, 
+    loading, 
+    currentView, 
+    selectedArtist,
+  } = useMusicStore();
+
+  const renderContent = () => {
+
+    
+    // Default to search view
+    return (
+      <>
+        <SearchBar />
+        {error && !loading && <Box mt={8}><ErrorMessage message={error} /></Box>}
+
+      </>
+    );
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <Box minH="100vh" bg="gray.900" color="gray.100" fontFamily="sans-serif">
+      <Navbar />
 
-export default App
+      <Box as="main">
+        <Container maxW="container.xl" p={{ base: 4, md: 8 }}>
+          <ErrorBoundary>
+            <Suspense fallback={<Spinner />}>
+              {renderContent()}
+            </Suspense>
+          </ErrorBoundary>
+        </Container>
+      </Box>
+      
+      <Footer />
+    </Box>
+  );
+};
+
+export default App;
