@@ -8,9 +8,7 @@ import type { Track } from '../../../utils/types';
 
 // Mock FavouriteButton
 vi.mock('../../common/FavouriteButton', () => ({
-  FavouriteButton: ({ track }: any) => (
-    <div data-testid={`favourite-${track.id}`}>Favourite</div>
-  ),
+  FavouriteButton: ({ track }: any) => <div data-testid={`favourite-${track.id}`}>Favourite</div>,
 }));
 
 const renderWithProvider = (component: React.ReactElement) => {
@@ -88,6 +86,3 @@ describe('TrackList', () => {
     expect(link2).toHaveAttribute('href', 'https://example.com/track2');
   });
 });
-
-
-

@@ -26,9 +26,7 @@ vi.mock('../TrackList', () => ({
 
 vi.mock('../AlbumPlayCountChart', () => ({
   default: ({ tracks }: any) => (
-    <div data-testid="play-count-chart">
-      Chart for {tracks.length} tracks
-    </div>
+    <div data-testid="play-count-chart">Chart for {tracks.length} tracks</div>
   ),
 }));
 
@@ -228,6 +226,3 @@ describe('AlbumDetailView', () => {
     expect(mockSetTrackSortOption).toHaveBeenCalledWith('name_asc');
   });
 });
-
-
-

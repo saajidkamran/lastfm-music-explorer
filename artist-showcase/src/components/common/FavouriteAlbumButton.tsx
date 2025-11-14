@@ -1,31 +1,27 @@
 import React from 'react';
 import { useMusicStore } from '../../store/store';
-// Fix: Import AlbumIdentifier instead of FavouriteAlbum.
 import type { AlbumDetail, AlbumSearchResult, AlbumIdentifier } from '../../utils/types';
 import { IconButton, Box } from '@chakra-ui/react';
 
 interface FavouriteAlbumButtonProps {
-  // Fix: Add AlbumIdentifier to the union type to allow passing FavouriteAlbum objects,
-  // which are used in the FavouritesView and are assignable to AlbumIdentifier.
   album: AlbumDetail | AlbumSearchResult | AlbumIdentifier;
 }
 
 export const FavouriteAlbumButton: React.FC<FavouriteAlbumButtonProps> = ({ album }) => {
   const { addFavouriteAlbum, removeFavouriteAlbum, isFavouriteAlbum } = useMusicStore();
-  
+
   const albumId = `${album.artist}-${album.name}`;
   const isFav = isFavouriteAlbum(albumId);
 
   const handleToggle = (e: React.MouseEvent) => {
     e.stopPropagation(); // Prevent card clicks or other parent element events
-    // Fix: The created object is an `AlbumIdentifier`. `dateAdded` is added in the store.
     const favAlbum: AlbumIdentifier = {
-        id: albumId,
-        name: album.name,
-        artist: album.artist,
-        image: album.image,
-        mbid: album.mbid,
-    }
+      id: albumId,
+      name: album.name,
+      artist: album.artist,
+      image: album.image,
+      mbid: album.mbid,
+    };
     if (isFav) {
       removeFavouriteAlbum(albumId);
     } else {
@@ -45,7 +41,7 @@ export const FavouriteAlbumButton: React.FC<FavouriteAlbumButtonProps> = ({ albu
       color={isFav ? 'pink.500' : 'gray.300'}
       _hover={{
         color: 'pink.400',
-        bg: isFav ? 'rgba(236, 72, 153, 0.2)' : 'rgba(236, 72, 153, 0.1)'
+        bg: isFav ? 'rgba(236, 72, 153, 0.2)' : 'rgba(236, 72, 153, 0.1)',
       }}
       aria-label={isFav ? 'Remove album from favourites' : 'Add album to favourites'}
       title={isFav ? 'Remove album from favourites' : 'Add album to favourites'}

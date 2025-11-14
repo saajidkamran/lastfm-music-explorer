@@ -1,4 +1,3 @@
-// Common style objects for consistent styling across components
 import type React from 'react';
 
 export const selectStyles = {
@@ -232,4 +231,3 @@ export const svgIconStyles = {
     transition: 'all 300ms',
   },
 };
-

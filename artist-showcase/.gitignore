@@ -5,3 +5,27 @@ node_modules
 
 # Snyk Security Extension - AI Rules (auto-generated)
 .github/instructions/snyk_rules.instructions.md
+
+# dependencies
+node_modules/
+
+# builds
+dist/
+build/
+
+# env
+.env*
+!.env.example
+
+# editor
+.vscode/
+.idea/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# misc
+.DS_Store

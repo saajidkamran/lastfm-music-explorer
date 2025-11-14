@@ -239,15 +239,14 @@ describe('lastfmService', () => {
 
   describe('getArtistTopAlbums', () => {
     it('returns empty array when no albums', async () => {
-      (global.fetch as any)
-        .mockResolvedValueOnce({
-          ok: true,
-          json: async () => ({
-            topalbums: {
-              album: [],
-            },
-          }),
-        });
+      (global.fetch as any).mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({
+          topalbums: {
+            album: [],
+          },
+        }),
+      });
 
       const result = await getArtistTopAlbums('Test Artist');
       expect(result).toEqual([]);
@@ -316,13 +315,8 @@ describe('lastfmService', () => {
 
       await searchTracks('test');
 
-      expect(global.fetch).toHaveBeenCalledWith(
-        expect.stringContaining(`api_key=${API_KEY}`)
-      );
-      expect(global.fetch).toHaveBeenCalledWith(
-        expect.stringContaining('format=json')
-      );
+      expect(global.fetch).toHaveBeenCalledWith(expect.stringContaining(`api_key=${API_KEY}`));
+      expect(global.fetch).toHaveBeenCalledWith(expect.stringContaining('format=json'));
     });
   });
 });
-

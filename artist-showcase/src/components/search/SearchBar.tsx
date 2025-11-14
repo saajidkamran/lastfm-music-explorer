@@ -1,8 +1,7 @@
-
 import React, { useState, useEffect } from 'react';
 import type { FormEvent } from 'react';
 import { useMusicStore } from '../../store/store';
-import  type { SearchType } from '../../utils/types';
+import type { SearchType } from '../../utils/types';
 import { Box, Flex, Input, Button } from '@chakra-ui/react';
 import { searchBarStyles, svgIconStyles } from '../../utils/styles';
 
@@ -21,12 +20,12 @@ const SearchBar: React.FC = () => {
     setSearchTerm(localSearchTerm);
     executeSearch();
   };
-  
+
   const handleTypeChange = (type: SearchType) => {
     setSearchType(type);
     if (localSearchTerm) {
-        // Automatically search when type changes if there is a search term
-        executeSearch();
+      // Automatically search when type changes if there is a search term
+      executeSearch();
     }
   };
 
@@ -54,7 +53,11 @@ const SearchBar: React.FC = () => {
               fill="currentColor"
               style={svgIconStyles.searchIcon}
             >
-              <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd" />
+              <path
+                fillRule="evenodd"
+                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                clipRule="evenodd"
+              />
             </svg>
             Search
           </Button>
@@ -64,16 +67,28 @@ const SearchBar: React.FC = () => {
         <Button
           onClick={() => handleTypeChange('album')}
           {...searchBarStyles.typeButton}
-          {...(searchType === 'album' ? searchBarStyles.typeButtonActive : searchBarStyles.typeButtonInactive)}
-          _hover={searchType === 'album' ? searchBarStyles.typeButtonActive : searchBarStyles.typeButtonHover}
+          {...(searchType === 'album'
+            ? searchBarStyles.typeButtonActive
+            : searchBarStyles.typeButtonInactive)}
+          _hover={
+            searchType === 'album'
+              ? searchBarStyles.typeButtonActive
+              : searchBarStyles.typeButtonHover
+          }
         >
           Albums
         </Button>
         <Button
           onClick={() => handleTypeChange('track')}
           {...searchBarStyles.typeButton}
-          {...(searchType === 'track' ? searchBarStyles.typeButtonActive : searchBarStyles.typeButtonInactive)}
-          _hover={searchType === 'track' ? searchBarStyles.typeButtonActive : searchBarStyles.typeButtonHover}
+          {...(searchType === 'track'
+            ? searchBarStyles.typeButtonActive
+            : searchBarStyles.typeButtonInactive)}
+          _hover={
+            searchType === 'track'
+              ? searchBarStyles.typeButtonActive
+              : searchBarStyles.typeButtonHover
+          }
         >
           Tracks
         </Button>

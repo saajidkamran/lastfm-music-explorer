@@ -25,9 +25,7 @@ export const TrackList: React.FC<TrackListProps> = ({ tracks, albumName }) => {
       <Stack gap={0}>
         {tracks.map((track, index) => (
           <Box key={track['@attr'].rank}>
-            {index > 0 && (
-              <Box borderColor="gray.700" borderTopWidth="1px" />
-            )}
+            {index > 0 && <Box borderColor="gray.700" borderTopWidth="1px" />}
             <Box
               p={4}
               _hover={{ bg: 'rgba(55, 65, 81, 0.5)' }}
@@ -68,14 +66,16 @@ export const TrackList: React.FC<TrackListProps> = ({ tracks, albumName }) => {
                   <Text color="gray.400" fontSize="sm" fontFamily="mono" mr={4}>
                     {formatDuration(track.duration)}
                   </Text>
-                  <FavouriteButton track={{
-                    id: `${track.artist}-${albumName}-${track.name}`,
-                    name: track.name,
-                    artist: track.artist,
-                    albumName: albumName,
-                    duration: track.duration,
-                    url: track.url,
-                  }} />
+                  <FavouriteButton
+                    track={{
+                      id: `${track.artist}-${albumName}-${track.name}`,
+                      name: track.name,
+                      artist: track.artist,
+                      albumName: albumName,
+                      duration: track.duration,
+                      url: track.url,
+                    }}
+                  />
                 </Flex>
               </Flex>
             </Box>
